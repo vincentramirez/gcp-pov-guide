@@ -8,4 +8,4 @@ chapters/1_Setup/secretVars
 chapters/1_Setup/license.json
 chapters/1_Setup/license.hclic
 chapters/8_Active_Directory_Secrets/secretVars
-chapters/6_Okta_Authorization/secretVars
+chapters/6_Okta_Authorization
