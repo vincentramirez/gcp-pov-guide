@@ -3,7 +3,7 @@ resource "google_compute_instance" "containerized" {
   name         = "containerized"
   machine_type = "${var.machineTypes["vault-client"]}"
   zone         = "${var.region}-a"
-  tags         = ["macys-cluster-dc1", "docker", "http-server"]
+  tags         = ["${var.consulNetworkTag["dc1"]}", "docker", "http-server"]
 
   metadata {
     sshKeys = "${var.userName}:${file("/Users/${var.userName}/.ssh/id_rsa.pub")}"
@@ -76,7 +76,7 @@ resource "google_compute_instance" "containerized" {
       ${jsonencode("bind_addr")}: ${jsonencode("0.0.0.0")},
       ${jsonencode("client_addr")}: ${jsonencode("0.0.0.0")},
       ${jsonencode("advertise_addr")}: ${jsonencode("${self.network_interface.0.access_config.0.nat_ip}")},
-      ${jsonencode("retry_join")}: ${jsonencode("${list("provider=gce project_name=${var.userName}-test tag_value=macys-cluster-dc1")}")},
+      ${jsonencode("retry_join")}: ${jsonencode("${list("provider=gce project_name=${var.userName}-test tag_value=${var.consulNetworkTag["dc1"]}")}")},
       ${jsonencode("log_level")}: ${jsonencode("DEBUG")},
       ${jsonencode("enable_syslog")}: true,
       ${jsonencode("acl_enforce_version_8")}: false

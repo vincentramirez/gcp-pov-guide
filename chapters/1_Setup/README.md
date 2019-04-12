@@ -1,4 +1,5 @@
 # Chapter 1: Setup
+**NOTE:** _If you are doing this POC, then you already have an enterprise license. You can get one from [here](https://www.hashicorp.com/products/vault/enterprise). This isn't to say that you can't do most of what is in this repo with OSS, but there are features that require an enterprise license to pull off._
 
 ## Initialize Vaults
 We used terraform to provision 2 clusters (in separate regions) of 8 nodes (5 consul & 3 vault). Consul isn't that important for what we are doing in this POC, so let's focus on the Vault nodes in each cluster.
@@ -40,7 +41,7 @@ Follow these same steps for one of the nodes in the vault-client-dr-${number} cl
 
 **NOTE 2:** _if you go about the api workflow, please consult [this](https://learn.hashicorp.com/vault/operations/ops-disaster-recovery) document for specifics on acquiring a dr_operation_token. The license.json file mentioned in the curl command above has 2 keys, the dr_operation_token, which you will need to get via the process defined in the referenced document & text, which should be your license string provided in license.hclic._
 
-## Set up replication
+## Set up replication **ENTERPRISE ONLY**
 For our demo, we will only be configuring DR replication. We would configure PR replication in the same way; the difference is that PR replication gives both clusters the ability to serve read/write requests for secrets. However, our configuration is better suited for a DR strategy, where we want to make sure we keep our secrets in case of failure.
 
 To configure replication, we can use the ui or the api. For simplicity and understanding, we will leverage the ui workflow; however, [this guide](https://learn.hashicorp.com/vault/operations/ops-disaster-recovery) contains every step to configure DR replication from the ui/cli/api. This guide includes how to manage the promotion process in case of failure; I will create this chapter in the future, so for now, just reference the doc if that's something you want to explore.

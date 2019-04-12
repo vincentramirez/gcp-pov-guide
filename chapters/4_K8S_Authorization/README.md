@@ -39,10 +39,10 @@ export SA_CA_CRT=$(kubectl get secret $VAULT_SA_NAME -o jsonpath="{.data['ca\.cr
 Now we need to set up the role. If I were an operator, I would do this from the cli of the primary vault instance. So, ssh into that instance and leverage the following command:
 ```
 vault write auth/kubernetes/role/solutions-engineering \
-    bound_service_account_names=solutions-engineering \
-    bound_service_account_namespaces=default \
-    policies=solutions_engineering \
-    ttl=1h
+      bound_service_account_names=solutions-engineering \
+      bound_service_account_namespaces=default \
+      policies=solutions_engineering \
+      ttl=1h
 ```
 
 ## Login and retrieve secrets in a k8s playground
@@ -66,5 +66,5 @@ curl --request POST \
 ```
 Use the token output to get your secrets.
 ```
-curl -H 'X-Vault-Token: theOutputOfToken' $VAULT_ADDR/v1/solutions_engineering/macys
+curl -H 'X-Vault-Token: theOutputOfToken' $VAULT_ADDR/v1/solutions_engineering/my
 ```

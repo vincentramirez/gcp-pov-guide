@@ -69,7 +69,7 @@ LIST USERS;
 ## Kill the root connections
 What you've done should make you feel powerful and organized. Leveraging dynamic credentials certainly makes management of secrets much easier. Still, you might be wondering about that initial connection, the one with the cassandra/cassandra username/password combination. Well, you can still log in with it, which isn't really great.
 
-Vault allows you to nix these connections however. This gives you the ability force database access with only dynamically generated credentials which, if you adopt organized strategies around ttls and key lifecycle, rotation, etc, is an excellent way to wrap up a chunk of users into a few database roles and forget about the security concerns of any credentials outstanding after use.
+Vault allows you to rotate these connections however. This gives you the ability force database access with only dynamically generated credentials which, if you adopt organized strategies around ttls and key lifecycle, rotation, etc, is an excellent way to wrap up a chunk of users into a few database roles and forget about the security concerns of any credentials outstanding after use.
 
 Simply enough, the rotation aspect is a very simple call to the Vault client, so let's ssh back into the primary.
 ```

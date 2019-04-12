@@ -24,6 +24,6 @@ ccount="theAccountYouAddedInAPreviousStep" project="yourProject" jwt_exp="15m"'
 This will output the token the server generated for you. Now all you have to do is use it to get your secrets.
 ```
 export VAULT_ADDR="http://$VAULT_IP" && \
-curl -H 'X-Vault-Token: theTokenOutputFromPreviousStep' $VAULT_ADDR/v1/solutions_engineering/macys
+curl -H 'X-Vault-Token: theTokenOutputFromPreviousStep' $VAULT_ADDR/v1/solutions_engineering/my
 ```
 Consult the [docs](https://www.vaultproject.io/docs/auth/gcp.html)/[api](https://www.vaultproject.io/api/auth/gcp/index.html) for more info and detail.
