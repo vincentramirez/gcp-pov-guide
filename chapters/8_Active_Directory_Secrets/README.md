@@ -40,7 +40,7 @@ username:   whateverUserYouAreUsing
 ```
 Store that password somewhere you can reference later. It's time to set up AD on our windows vm.
 
-Now navigate back to Google Cloud Console > Compute Engine > VM. Where your windows machine is listed, click on teh **RDP** text to the right of the card and select download RDP file.
+Now navigate back to Google Cloud Console > Compute Engine > VM. Where your windows machine is listed, click on the **RDP** text to the right of the card and select download RDP file.
 
 Import the RDP connection file into your windows RDP client application and get ready for Active Directory fun.
 
@@ -73,7 +73,7 @@ vault ad/config \
 bindid=ADSERVERDOMAIN\serviceAccountADUser \
 bindpass=theServiceAccountUserPassword \
 url=ldap://yourADIP \
-userdn='dc=theDomainName,dc=theDomainNameExtension & #example='dc=macysexamplead,dc=net' \
+userdn='dc=theDomainName,dc=theDomainNameExtension & #example='dc=yourldapdomain,dc=yourldapextension' \
 ttl=1m \
 insecure_tls=true \
 starttls=true

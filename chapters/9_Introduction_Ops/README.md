@@ -3,11 +3,11 @@ We've talked a considerable amount about tokens. The primary concern for most au
 
 Vault is flexible to allow for multiple workflows that suit many different use cases. In the cases where an auth method from a trusted provider cannot be used, or in any general case where we want to introduce some token to an end system, we need to do so in the most secure way possible.
 
-To this end, we have 2 options: [Vault Agent]() & response wrapping. I've linked Vault Agent for further inspection by you and your team, but want to spend my time today with response wrapping.
+To this end, we have 2 options: [Vault Agent](https://www.vaultproject.io/docs/agent/) & response wrapping. I've linked Vault Agent for further inspection by you and your team, but want to spend my time today with response wrapping.
 
 Since we've already familiarized ourselves with AppRole, I think it's an excellent use case for response wrapping. We hopefully remember that AppRole's generic auth mechanism allows for logging in with a role and secret id. Unlike GCP and K8s however, appRole needs a token that allows it to get the roleId and secretId to complete the login process. In the case where appRole is used by some automated thing, it will need a token that allows it to access the vault endpoints to generate the token used to get secrets.
 
-This top level token is a wrapped response. Anything I wrap (tokens, payloads, secrets, etc) will always be assigned a single token that is substituted for the X-Vault-Token in a subsequent request to uncover what lies beneath. Wrapped tokens are accessible to anyone, but they are inspectable, single use, and maintain separate ttls from the data they abstract from the possessor.  
+This top level token is a wrapped response. Anything I wrap (tokens, payloads, secrets, etc) will always be assigned a single token that is substituted for the `X-Vault-Token` in a subsequent request to uncover what lies beneath. Wrapped tokens are accessible to anyone, but they are inspectable, single use, and maintain separate ttls from the data they abstract from the possessor.  
 
 This is important to know before one goes about sending tokens across the network.
 
@@ -22,7 +22,7 @@ Agree to all the defaults, do not establish passwords. Print the public key to s
 ```
 cat /home/userName/.ssh/id_rsa.pub
 ```
-Then copy & paste it into the database server authorized_keys file at the ```/home/userName/.ssh/authorized_keys``` path. Now we can do some wrap operations.
+Then copy & paste it into the database server authorized_keys file at the `/home/userName/.ssh/authorized_keys` path. Now we can do some wrap operations.
 
 ## Create a role and map it to the policy
 We've already established our _application_ policy. All we need to do is create the token.

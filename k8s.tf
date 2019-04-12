@@ -8,7 +8,7 @@ resource "google_container_cluster" "k8s" {
 
   # Don't worry about changing this unless something breaks, then let me know and we can address it then
   master_auth {
-    username = "josh"
+    username = "poc"
     password = "sixteendigitssssss"
   }
 
@@ -24,7 +24,7 @@ resource "google_container_cluster" "k8s" {
       env = "sandbox"
     }
 
-    tags = ["k8s", "macys-poc"]
+    tags = ["k8s", "poc"]
   }
 }
 
